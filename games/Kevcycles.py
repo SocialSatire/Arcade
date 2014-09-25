@@ -83,8 +83,8 @@ def main():
 	
 	global player1
 	global player2
-	player1 = Bat("Red")
-	player2 = Bat("Blue")
+	player1 = cycle("Red")
+	player2 = cycle("Blue")
 	playersprites = pygame.sprite.RenderPlain((player1, player2))
     screen.blit(background, (0, 0))
     pygame.display.flip()
