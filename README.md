@@ -1,4 +1,4 @@
 Arcade
 ======
 
-A way to store and collaborate on the pygame arcade files
+A way to store and collaborate on the java arcade files
