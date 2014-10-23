@@ -1,8 +1,10 @@
 ::Hopefully this works
 @echo OFF
-:compile
+del games/*.class
 cls
-javac -cp slick/lib/*.jar *.java
+javac -cp .;jars/slick.jar;jars/lwjgl.jar games/*.java
 echo Complete
-set /p again=Again? [y/n]?:
-if %again% == y goto compile
+cd games
+set /p run=Program to run?:
+java -Djava.library.path=../lwjglbin -cp .;../jars/slick.jar;../jars/lwjgl.jar %run%
+pause
