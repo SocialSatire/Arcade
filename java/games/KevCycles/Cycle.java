@@ -7,12 +7,11 @@ import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
  
 public class Cycle{
- 
+	
 	private Image cycleImage;
 	private int x, y;
 	private int dir;
-	public Cycle(String color, int x, int y, int dir)throws SlickException{
-		// Formatting for this image path will change
+	public Cycle(int color, int x, int y, int dir)throws SlickException{
 		this.cycleImage = new Image("KevCycles/sprites/cycle"+color+".png");
 		this.x = x;this.y = y;this.dir = dir;
 		cycleImage.rotate(90*dir);

@@ -17,10 +17,11 @@ public class KevCycles extends BasicGame{
 	private int moveDist;
 	private boolean colorSelect;
 	private int[] playerColors = new int[2];
-	// I WILL USE MORE PRECISE VALUES WHEN THE SPRITES ARE DONE
-	private final Color[] bikeColors = {Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.pink};
+	private final Color[] bikeColors = {rgb(249,0,0), rgb(249,58,0), rgb(249,199,0), 
+	rgb(27,156,0), rgb(0,249,216), rgb(0,55,193), rgb(101,0,158), rgb(249,0,157)};
 	private boolean[] playersChosen = new boolean[2];
 	private int[] timesSinceChoice = new int[2];
+	private boolean gameOver;
 	public KevCycles(){
 		super("Cool Game.exe");
 	}
@@ -36,7 +37,7 @@ public class KevCycles extends BasicGame{
 		playerColors[0] = 0;playerColors[1] = 4;
 	}
 	public void update(GameContainer gc, int delta)throws SlickException{
-		if(colorSelect){chooseColor(delta);timeToStart();}else{		//IT'S NOT GREAT YET BUT WHATEVER
+		if(gameOver){juliusScoreFunction();}else if(colorSelect){chooseColor(delta);timeToStart();}else{
 		moveDist = 5*delta*60/1000;
 		iPos[0] = players[0].getX();
 		iPos[1] = players[0].getY();
@@ -47,12 +48,13 @@ public class KevCycles extends BasicGame{
 		movePlayers();
 		int xDiff = players[0].getX() - players[1].getX();
 		int yDiff = players[0].getY() - players[1].getY();
-		// This will also be changed when x and y are different
+		// this here is wrong but whatever
 		if((Math.abs(xDiff) <= 32) && (Math.abs(yDiff) <= 16)){
 			players[0].setX(iPos[0]);
 			players[0].setY(iPos[1]);
 			players[1].setX(iPos[2]);
-			players[1].setY(iPos[3]);}}
+			players[1].setY(iPos[3]);}
+		checkTraceCollisions();}
 	}
 	public void turnPlayers(){
 		if(buttons.isKeyDown(Input.KEY_RIGHT)){players[0].turn(0);};
@@ -65,10 +67,9 @@ public class KevCycles extends BasicGame{
 		if(buttons.isKeyDown(Input.KEY_S)){players[1].turn(3);};
 	}
 	public void checkBoundaries(){
-		//THIS WILL CONDENSE WHEN WE HAVE FINAL SPRITE SIZES AND STORE
-		//THEM IN CLASS VARS
+
+		// I'm not sure why this doesn't work help
 		
-		// also I'm not sure why this doesn't work help
 		if(players[0].getDir()%2==0){
 		if(players[0].getX() <= 0){players[0].setX(0);};
 		if(players[0].getX()+32 >= 640){players[0].setX(640-32);};
@@ -101,40 +102,85 @@ public class KevCycles extends BasicGame{
 	}
 	public void chooseColor(int delta){
 		timesSinceChoice[0]+=delta;timesSinceChoice[1]+=delta;
-		if(buttons.isKeyDown(Input.KEY_L))playersChosen[0]=true;
-		if(!playersChosen[0]&&(timesSinceChoice[0]>=100)){
+		if(buttons.isKeyDown(Input.KEY_K))
+		if(!(playersChosen[1] && playerColors[0] == playerColors[1]))playersChosen[0]=true;
+		if(!playersChosen[0]&&(timesSinceChoice[0]>=200)){
 		if(buttons.isKeyDown(Input.KEY_RIGHT)){playerColors[0]++;timesSinceChoice[0]=0;};
 		if(buttons.isKeyDown(Input.KEY_LEFT)){playerColors[0]--;timesSinceChoice[0]=0;}}
-		if(buttons.isKeyDown(Input.KEY_F))playersChosen[1]=true;
-		if(!playersChosen[1]&&(timesSinceChoice[1]>=100)){
+		if(buttons.isKeyDown(Input.KEY_F))
+		if(!(playersChosen[0] && playerColors[0] == playerColors[1]))playersChosen[1]=true;
+		if(!playersChosen[1]&&(timesSinceChoice[1]>=200)){
 		if(buttons.isKeyDown(Input.KEY_D)){playerColors[1]++;timesSinceChoice[1]=0;}
 		if(buttons.isKeyDown(Input.KEY_A)){playerColors[1]--;timesSinceChoice[1]=0;}}
-		if(playersChosen[1] && (playerColors[0]%6 == playerColors[1]%6))playerColors[0]++;
-		else if(playerColors[0]%6 == playerColors[1]%6)playerColors[1]++;
-		playerColors[0]+=6;playerColors[1]+=6;playerColors[0]%=6;playerColors[1]%=6;
+		playerColors[0]+=8;playerColors[1]+=8;playerColors[0]%=8;playerColors[1]%=8;
 	}
 	public void timeToStart() throws SlickException{
 		if(playersChosen[0]&&playersChosen[1]){
 			colorSelect = false;
-			players[0]=(new Cycle(""+playerColors[0], 100, 100, 0));
-			players[1]=(new Cycle(""+playerColors[1], 540, 380, 2));
+			players[0]=(new Cycle(playerColors[0], 100, 100, 0));
+			players[1]=(new Cycle(playerColors[1], 540, 380, 2));
 		}
 	}
-	public void drawColorSelect(Graphics g){
+	public void checkTraceCollisions(){
+	
+	// THIS DOESN'T WORK HELP
+	
+	/*	for(Trace t:Trace.getTraces()){
+			int xDiff1 = players[0].getX() - t.getX();
+			int yDiff1 = players[0].getY() - t.getY();
+			int xDiff2 = players[1].getX() - t.getX();
+			int yDiff2 = players[1].getY() - t.getY();
+			if(players[0].getDir()%2==0?(yDiff1<8)&&(xDiff1==0):(xDiff1<8)&&(yDiff1==0)) playerLose(0);
+			if(players[1].getDir()%2==0?(yDiff2<8)&&(xDiff2==0):(xDiff2<8)&&(yDiff2==0)) playerLose(1);
+		}
+	*/
+	}
+	public void playerLose(int player){
+		gameOver = true;
+		// Julius is doing scores and stuff that will go here
+	}
+	public void juliusScoreFunction(){
+		Trace.clearTraces();
+		// This also falls to Julius
+	}
+	//convenience
+	public Color rgb(int a, int b, int c){return new Color(a/255.0f, b/255.0f, c/255.0f);}
+	public void drawColorSelect(Graphics g) throws SlickException{
 		g.setColor(Color.white);
 		// Instructions will change with controls
-		g.drawString("Use left/right or a/d to choose, f to select p2 and l to select p1",15,50);
+		g.drawString("Use left/right or a/d to choose, f to select p2 and k to select p1",15,50);
 		g.setColor(bikeColors[playerColors[0]]);
 		g.fillRect(175,215,50,50);
+		g.fillRect(120,282,67,2);
+		if(!playersChosen[0]){
+		g.setColor(bikeColors[(playerColors[0]+1)%8]);
+		g.fillRect(225,230,35,35);
+		g.setColor(bikeColors[(playerColors[0]+2)%8]);
+		g.fillRect(260,245,20,20);
+		g.setColor(bikeColors[(playerColors[0]+7)%8]);
+		g.fillRect(140,230,35,35);
+		g.setColor(bikeColors[(playerColors[0]+6)%8]);
+		g.fillRect(120,245,20,20);}
+		new Cycle(playerColors[0],184,275,0).getImage().draw(184,275);
 		g.setColor(bikeColors[playerColors[1]]);
 		g.fillRect(415,215,50,50);
+		g.fillRect(360,282,67,2);
+		if(!playersChosen[1]){
+		g.setColor(bikeColors[(playerColors[1]+1)%8]);
+		g.fillRect(465,230,35,35);
+		g.setColor(bikeColors[(playerColors[1]+2)%8]);
+		g.fillRect(500,245,20,20);
+		g.setColor(bikeColors[(playerColors[1]+7)%8]);
+		g.fillRect(380,230,35,35);
+		g.setColor(bikeColors[(playerColors[1]+6)%8]);
+		g.fillRect(360,245,20,20);}
+		new Cycle(playerColors[1],424,275,0).getImage().draw(424,275);
 	}
-	
 	public void render(GameContainer gc, Graphics g)throws SlickException{
 		if(colorSelect)drawColorSelect(g);else{
 		for(Cycle p : players)p.getImage().draw(p.getX(),p.getY());
 		for(Trace t : Trace.getTraces()){
-			g.setColor(bikeColors[playerColors[t.getPlayer()]]); //ALSO TEMPORARY UNTIL WE FINISH SPRITES
+			g.setColor(bikeColors[playerColors[t.getPlayer()]]);
 			if(t.getH())g.fillRect(t.getX(),t.getY(),t.getSpeed(),2);else g.fillRect(t.getX(),t.getY(),2,t.getSpeed());
 		}}
 	}

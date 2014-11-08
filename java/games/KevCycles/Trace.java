@@ -25,4 +25,5 @@ public class Trace{
 	public int getSpeed(){return speed;}
 	public int getPlayer(){return player;}
 	public static ArrayList<Trace> getTraces(){return traces;}
+	public static void clearTraces(){traces.clear();}
 }
