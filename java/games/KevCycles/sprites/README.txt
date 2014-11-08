@@ -1,0 +1,1 @@
+Red_Cycle and Blue_Cycle are placeholders to test the code before we add color modification and sprite rotation
