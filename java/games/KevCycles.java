@@ -14,6 +14,7 @@ public class KevCycles extends BasicGame{
 	private Cycle[] players = new Cycle[2];
 	private Input buttons;
 	private int[] iPos = new int[4];
+	private int moveDist;
 	public KevCycles(){
 		super("Cool Game.exe");
 	}
@@ -26,9 +27,10 @@ public class KevCycles extends BasicGame{
 		players[1]=(new Cycle("Blue", 200, 200));
 		buttons = gc.getInput();
 		gc.setTargetFrameRate(60);
-		new Trace(-10,-10,true);//shut up
+		new Trace(-10,-10,true,moveDist);//shut up
 	}
 	public void update(GameContainer gc, int delta)throws SlickException{
+		moveDist = 5*delta*60/1000;
 		iPos[0] = players[0].getX();
 		iPos[1] = players[0].getY();
 		iPos[2] = players[1].getX();
@@ -82,22 +84,20 @@ public class KevCycles extends BasicGame{
 	}
 	public void movePlayers(){
 		// Somebody please fix the corners
-		if(players[0].getDir()==0){players[0].setX(players[0].getX()+5);new Trace(iPos[0],iPos[1]+6,true);};
-		if(players[0].getDir()==2){players[0].setX(players[0].getX()-5);new Trace(players[0].getX()-16,iPos[1]+6,true);};
-		if(players[0].getDir()==1){players[0].setY(players[0].getY()-5);new Trace(iPos[0]+6,players[0].getY()-16,false);};
-		if(players[0].getDir()==3){players[0].setY(players[0].getY()+5);new Trace(iPos[0]+6,players[0].getY(),false);};
-		if(players[0].getDir()==0)new Trace(iPos[0],iPos[1]+6,true);
-		if(players[1].getDir()==0){players[1].setX(players[1].getX()+5);new Trace(iPos[2],iPos[3]+6,true);};
-		if(players[1].getDir()==2){players[1].setX(players[1].getX()-5);new Trace(players[1].getX()-16,iPos[3]+6,true);};
-		if(players[1].getDir()==1){players[1].setY(players[1].getY()-5);new Trace(iPos[2]+6,players[1].getY()-16,false);};
-		if(players[1].getDir()==3){players[1].setY(players[1].getY()+5);new Trace(iPos[2]+6,players[1].getY(),false);};
+		if(players[0].getDir()==0){players[0].setX(players[0].getX()+moveDist);new Trace(iPos[0],iPos[1]+7,true,moveDist);};
+		if(players[0].getDir()==2){players[0].setX(players[0].getX()-moveDist);new Trace(players[0].getX()+16,iPos[1]+7,true,moveDist);};
+		if(players[0].getDir()==1){players[0].setY(players[0].getY()-moveDist);new Trace(iPos[0]+15,players[0].getY()+16,false,moveDist);};
+		if(players[0].getDir()==3){players[0].setY(players[0].getY()+moveDist);new Trace(iPos[0]+15,iPos[1],false,moveDist);};
+		if(players[1].getDir()==0){players[1].setX(players[1].getX()+moveDist);new Trace(iPos[2],iPos[3]+7,true,moveDist);};
+		if(players[1].getDir()==2){players[1].setX(players[1].getX()-moveDist);new Trace(players[1].getX()+16,iPos[3]+7,true,moveDist);};
+		if(players[1].getDir()==1){players[1].setY(players[1].getY()-moveDist);new Trace(iPos[2]+15,players[1].getY()+16,false,moveDist);};
+		if(players[1].getDir()==3){players[1].setY(players[1].getY()+moveDist);new Trace(iPos[2]+15,iPos[3],false,moveDist);};
 	}
 	public void render(GameContainer gc, Graphics g)throws SlickException{
 		for(Cycle p : players)p.getImage().draw(p.getX(),p.getY());
 		for(Trace t : Trace.getTraces()){
 			g.setColor(Color.white); //ALSO TEMPORARY UNTIL WE FINISH SPRITES
-			if(t.getH())g.drawRect(t.getX(),t.getY(),5,1);else g.drawRect(t.getX(),t.getY(),1,5);
-			
+			if(t.getH())g.fillRect(t.getX(),t.getY(),t.getSpeed(),2);else g.fillRect(t.getX(),t.getY(),2,t.getSpeed());
 		}
 	}
 }
