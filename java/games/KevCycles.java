@@ -42,18 +42,18 @@ public class KevCycles extends BasicGame{
 			players[0].setX(iPos[0]);
 			players[0].setY(iPos[1]);
 			players[1].setX(iPos[2]);
-			players[2].setY(iPos[3]);
+			players[1].setY(iPos[3]);
 		}
 	}
 	public void movePlayers(){
-		if(buttons.isKeyDown(Input.KEY_RIGHT)){players[0].setX(players[0].getX()+5);};
-		if(buttons.isKeyDown(Input.KEY_LEFT)){players[0].setX(players[0].getX()-5);};
-		if(buttons.isKeyDown(Input.KEY_UP)){players[0].setY(players[0].getY()-5);};
-		if(buttons.isKeyDown(Input.KEY_DOWN)){players[0].setY(players[0].getY()+5);};
-		if(buttons.isKeyDown(Input.KEY_D)){players[1].setX(players[1].getX()+5);};
-		if(buttons.isKeyDown(Input.KEY_A)){players[1].setX(players[1].getX()-5);};
-		if(buttons.isKeyDown(Input.KEY_W)){players[1].setY(players[1].getY()-5);};
-		if(buttons.isKeyDown(Input.KEY_S)){players[1].setY(players[1].getY()+5);};
+		if(buttons.isKeyDown(Input.KEY_RIGHT)){players[0].setX(players[0].getX()+5);players[0].turn(0);};
+		if(buttons.isKeyDown(Input.KEY_LEFT)){players[0].setX(players[0].getX()-5);players[0].turn(2);};
+		if(buttons.isKeyDown(Input.KEY_UP)){players[0].setY(players[0].getY()-5);players[0].turn(1);};
+		if(buttons.isKeyDown(Input.KEY_DOWN)){players[0].setY(players[0].getY()+5);players[0].turn(3);};
+		if(buttons.isKeyDown(Input.KEY_D)){players[1].setX(players[1].getX()+5);players[1].turn(0);};
+		if(buttons.isKeyDown(Input.KEY_A)){players[1].setX(players[1].getX()-5);players[1].turn(2);};
+		if(buttons.isKeyDown(Input.KEY_W)){players[1].setY(players[1].getY()-5);players[1].turn(1);};
+		if(buttons.isKeyDown(Input.KEY_S)){players[1].setY(players[1].getY()+5);players[1].turn(3);};
 	}
 	public void checkBoundaries(){
 		if(players[0].getX() <= 0){players[0].setX(0);};
