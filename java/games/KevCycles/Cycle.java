@@ -15,6 +15,7 @@ public class Cycle{
 		// Formatting for this image path will change
 		this.cycleImage = new Image("KevCycles/sprites/cycle"+color+".png");
 		this.x = x;this.y = y;this.dir = dir;
+		cycleImage.rotate(90*dir);
 	}
 	public Image getImage(){return cycleImage;}
 	public int getX(){return x;}
