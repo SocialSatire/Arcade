@@ -21,6 +21,7 @@ public class KevCycles extends BasicGame{
 	rgb(27,156,0), rgb(0,249,216), rgb(0,55,193), rgb(101,0,158), rgb(249,0,157)};
 	private boolean[] playersChosen = new boolean[2];
 	private int[] timesSinceChoice = new int[2];
+	private boolean dontTrace;
 	private boolean gameOver;
 	public KevCycles(){
 		super("Cool Game.exe");
@@ -34,16 +35,17 @@ public class KevCycles extends BasicGame{
 		gc.setTargetFrameRate(60);
 		new Trace(-10,-10,true,moveDist,0);//shut up
 		colorSelect=true;
-		playerColors[0] = 0;playerColors[1] = 4;
+		playerColors[0] = 0;playerColors[1] = 5;
 	}
 	public void update(GameContainer gc, int delta)throws SlickException{
 		if(gameOver){juliusScoreFunction();}else if(colorSelect){chooseColor(delta);timeToStart();}else{
 		moveDist = 5*delta*60/1000;
+		turnPlayers();
 		iPos[0] = players[0].getX();
 		iPos[1] = players[0].getY();
 		iPos[2] = players[1].getX();
 		iPos[3] = players[1].getY();
-		turnPlayers();
+		
 		checkBoundaries();
 		movePlayers();
 		int xDiff = players[0].getX() - players[1].getX();
@@ -57,14 +59,44 @@ public class KevCycles extends BasicGame{
 		checkTraceCollisions();}
 	}
 	public void turnPlayers(){
-		if(buttons.isKeyDown(Input.KEY_RIGHT)){players[0].turn(0);};
-		if(buttons.isKeyDown(Input.KEY_LEFT)){players[0].turn(2);};
-		if(buttons.isKeyDown(Input.KEY_UP)){players[0].turn(1);};
-		if(buttons.isKeyDown(Input.KEY_DOWN)){players[0].turn(3);};
-		if(buttons.isKeyDown(Input.KEY_D)){players[1].turn(0);};
-		if(buttons.isKeyDown(Input.KEY_A)){players[1].turn(2);};
-		if(buttons.isKeyDown(Input.KEY_W)){players[1].turn(1);};
-		if(buttons.isKeyDown(Input.KEY_S)){players[1].turn(3);};
+		int[] oldDir={players[0].getDir(),players[1].getDir()};
+		while(true){
+		if(buttons.isKeyDown(Input.KEY_RIGHT)){players[0].turn(0);
+		if(oldDir[0]==1){players[0].setX(players[0].getX()+16);players[0].setY(players[0].getY()+8);}
+		else if(oldDir[0]==3){players[0].setX(players[0].getX()+16);players[0].setY(players[0].getY()-8);}
+		break;};
+		if(buttons.isKeyDown(Input.KEY_LEFT)){players[0].turn(2);
+		if(oldDir[0]==1){players[0].setX(players[0].getX()+0);players[0].setY(players[0].getY()+8);}
+		else if(oldDir[0]==3){players[0].setX(players[0].getX()+0);players[0].setY(players[0].getY()-8);}
+		break;};
+		if(buttons.isKeyDown(Input.KEY_UP)){players[0].turn(1);
+		if(oldDir[0]==0){players[0].setX(players[0].getX()-16);players[0].setY(players[0].getY()-8);}
+		else if(oldDir[0]==2){players[0].setX(players[0].getX()+0);players[0].setY(players[0].getY()-8);}
+		break;};
+		if(buttons.isKeyDown(Input.KEY_DOWN)){players[0].turn(3);
+		if(oldDir[0]==0){players[0].setX(players[0].getX()-16);players[0].setY(players[0].getY()+8);}
+		else if(oldDir[0]==2){players[0].setX(players[0].getX()+0);players[0].setY(players[0].getY()+8);}
+		break;};
+		break;}
+		while(true){
+		if(buttons.isKeyDown(Input.KEY_D)){players[1].turn(0);
+		if(oldDir[1]==1){players[1].setX(players[1].getX()+16);players[1].setY(players[1].getY()+8);}
+		else if(oldDir[1]==3){players[1].setX(players[1].getX()+16);players[1].setY(players[1].getY()-8);}
+		break;};
+		if(buttons.isKeyDown(Input.KEY_A)){players[1].turn(2);
+		if(oldDir[1]==1){players[1].setX(players[1].getX()+0);players[1].setY(players[1].getY()+8);}
+		else if(oldDir[1]==3){players[1].setX(players[1].getX()+0);players[1].setY(players[1].getY()-8);}
+		break;};
+		if(buttons.isKeyDown(Input.KEY_W)){players[1].turn(1);
+		if(oldDir[1]==0){players[1].setX(players[1].getX()-16);players[1].setY(players[1].getY()-8);}
+		else if(oldDir[1]==2){players[1].setX(players[1].getX()+0);players[1].setY(players[1].getY()-8);}
+		break;};
+		if(buttons.isKeyDown(Input.KEY_S)){players[1].turn(3);
+		if(oldDir[1]==0){players[1].setX(players[1].getX()-16);players[1].setY(players[1].getY()+8);}
+		else if(oldDir[1]==2){players[1].setX(players[1].getX()+0);players[1].setY(players[1].getY()+8);}
+		break;};
+		break;}
+		
 	}
 	public void checkBoundaries(){
 
