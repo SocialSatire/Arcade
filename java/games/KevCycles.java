@@ -23,6 +23,7 @@ public class KevCycles extends BasicGame{
 	private int[] timesSinceChoice = new int[2];
 	private boolean dontTrace;
 	private boolean gameOver;
+	private int countDown;
 	public KevCycles(){
 		super("Cool Game.exe");
 	}
@@ -34,11 +35,11 @@ public class KevCycles extends BasicGame{
 		buttons = gc.getInput();
 		gc.setTargetFrameRate(60);
 		new Trace(-10,-10,true,moveDist,0);//shut up
-		colorSelect=true;
+		colorSelect=true;countDown=4;
 		playerColors[0] = 0;playerColors[1] = 5;
 	}
 	public void update(GameContainer gc, int delta)throws SlickException{
-		if(gameOver){juliusScoreFunction();}else if(colorSelect){chooseColor(delta);timeToStart();}else{
+		try{if(gameOver){juliusScoreFunction();}else if(colorSelect){chooseColor(delta);timeToStart(countDown);}else{
 		moveDist = 5*delta*60/1000;
 		turnPlayers();
 		iPos[0] = players[0].getX();
@@ -56,7 +57,7 @@ public class KevCycles extends BasicGame{
 			players[0].setY(iPos[1]);
 			players[1].setX(iPos[2]);
 			players[1].setY(iPos[3]);}
-		checkTraceCollisions();}
+		checkTraceCollisions();}}catch(InterruptedException i){;};
 	}
 	public void turnPlayers(){
 		int[] oldDir={players[0].getDir(),players[1].getDir()};
@@ -146,12 +147,13 @@ public class KevCycles extends BasicGame{
 		if(buttons.isKeyDown(Input.KEY_A)){playerColors[1]--;timesSinceChoice[1]=0;}}
 		playerColors[0]+=8;playerColors[1]+=8;playerColors[0]%=8;playerColors[1]%=8;
 	}
-	public void timeToStart() throws SlickException{
-		if(playersChosen[0]&&playersChosen[1]){
-			colorSelect = false;
+	public void timeToStart(int c) throws SlickException, InterruptedException{
+		if(playersChosen[0]&&playersChosen[1])if(countDown == 0){
+			colorSelect = false;Thread.sleep(1000);
 			players[0]=(new Cycle(playerColors[0], 100, 100, 0));
 			players[1]=(new Cycle(playerColors[1], 540, 380, 2));
 		}
+		else{countDown--; Thread.sleep(1000);}
 	}
 	public void checkTraceCollisions(){
 	
@@ -209,6 +211,8 @@ public class KevCycles extends BasicGame{
 		new Cycle(playerColors[1],424,275,0).getImage().draw(424,275);
 	}
 	public void render(GameContainer gc, Graphics g)throws SlickException{
+		if((countDown > 0)&&playersChosen[0]&&playersChosen[1]){g.setColor(Color.white); 
+		g.drawString(""+countDown,320,240);}
 		if(colorSelect)drawColorSelect(g);else{
 		for(Cycle p : players)p.getImage().draw(p.getX(),p.getY());
 		for(Trace t : Trace.getTraces()){
