@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Trace{
  
 	private static ArrayList<Trace> traces = new ArrayList<Trace>();
-	private Image cycleImage;
 	private int x, y;
 	private boolean horizontal;
 	private int speed;
