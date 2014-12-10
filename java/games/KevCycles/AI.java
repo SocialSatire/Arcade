@@ -65,9 +65,9 @@ if(dir1 == 0)
 			{
                 if(t.getY() == i)
                 {
-                        for(int i = minimum; i < collide; i++)
+                        for(int j = minimum; j < collide; j++)
                         {
-                                if(t.getX() == i)
+                                if(t.getX() == j)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
@@ -123,9 +123,9 @@ else if(dir1 == 1)
 			{
                 if(t.getX() == i)
                 {
-                        for(int i = minimum; i < collide; i++)
+                        for(int j = minimum; j < collide; j++)
                         {
-                                if(t.getY() == i)
+                                if(t.getY() == j)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
@@ -181,9 +181,9 @@ else if(dir1 == 2)
 			{
                 if(t.getY() == i)
                 {
-                        for(int i = minimum; i < collide; i++)
+                        for(int j = minimum; j < collide; j++)
                         {
-                                if(t.getX() == i)
+                                if(t.getX() == j)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
@@ -239,9 +239,9 @@ else
 			{
                 if(t.getX() == i)
                 {
-                        for(int i = minimum; i < collide; i++)
+                        for(int j = minimum; j < collide; j++)
                         {
-                                if(t.getY() == i)
+                                if(t.getY() == j)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
