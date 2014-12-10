@@ -30,241 +30,223 @@ public class AI{
 double soupd = Math.random();
  
 soupd*=30;
-soupd+=10;
+soupd+=20;
  
 int soup = (int) Math.floor(soupd);
-
+ 
+double turn = Math.random();
+turn*=2;
+Math.floor(turn);
+ 
+int newTurn = dir1;
+ 
 if(dir1 == 0)
 {
         int collide = x1+soup+32;
         int minimum = x1+42;
-		int trace1 = y1-5;
-		int trace2 = y1+5;
+                int trace1 = y1-5;
+                int trace2 = y1+5;
         for(int i = minimum; i < collide; i++)
         {
                 if(i == 640)
                         {
-                                double turn = Math.random();
-                                turn*=2;
-                                turn = Math.floor(turn);
-                                if(turn == 0)
+                                if(y1 > 240)
                                 {
-                                        return 1;
+                                        newTurn = 1;
                                 }
                                 else
                                 {
-                                        return 3;
+                                        newTurn = 3;
                                 }
                         }
         }
-        return dir1;
-
+ 
         for(Trace t : Trace.getTraces())
         {
-			for(int i = trace1; i < trace2; i++)
-			{
+                        for(int i = trace1; i < trace2; i++)
+                        {
                 if(t.getY() == i)
                 {
                         for(int j = minimum; j < collide; j++)
                         {
                                 if(t.getX() == j)
                                 {
-                                        double turn = Math.random();
-                                        turn*=2;
-                                        turn = Math.floor(turn);
                                         if(turn == 0)
                                         {
-                                                return 1;
+                                                newTurn = 1;
                                         }
                                         else
                                         {
-                                                return 3;
+                                                newTurn = 3;
                                         }
                                 }
                         }
-                        return dir1;
+                        //newTurn = dir1;
                 }
                 else
-				{
-                        return dir1;
+                                {
+                        //newTurn = dir1;
                 }
-			}
+                        }
         }
-}       
-
+}      
+ 
 else if(dir1 == 1)
 {
         int collide = y1-soup;
         int minimum = y1-10;
-		int trace1 = x1-5;
-		int trace2 = x1+5;
-        for(int i = minimum; i < collide; i++)
-        {
-                if(i == 0)
-                        {
-                                double turn = Math.random();
-                                turn*=2;
-                                turn = Math.floor(turn);
-                                if(turn == 0)
-                                {
-                                        return 0;
-                                }
-                                else
-                                {
-                                        return 2;
-                                }
-                        }
-        }
-        return dir1;
-
-        for(Trace t : Trace.getTraces())
-        {
-			for(int i = trace1; i < trace2; i++)
-			{
-                if(t.getX() == i)
-                {
-                        for(int j = minimum; j < collide; j++)
-                        {
-                                if(t.getY() == j)
-                                {
-                                        double turn = Math.random();
-                                        turn*=2;
-                                        turn = Math.floor(turn);
-                                        if(turn == 0)
-                                        {
-                                                return 0;
-                                        }
-                                        else
-                                        {
-                                                return 2;
-                                        }
-                                }
-                        }
-                        return dir1;
-                }
-                else
-				{
-                        return dir1;
-                }
-			}
-        }
-}       
-
-else if(dir1 == 2)
-{
-        int collide = x1-soup;
-        int minimum = x1-10;
-		int trace1 = y1-5;
-		int trace2 = y1+5;
+                int trace1 = x1-5;
+                int trace2 = x1+5;
         for(int i = minimum; i > collide; i--)
         {
                 if(i == 0)
                         {
-                                double turn = Math.random();
-                                turn*=2;
-                                turn = Math.floor(turn);
-                                if(turn == 0)
+                                if(x1 < 320)
                                 {
-                                        return 1;
+                                        newTurn = 0;
                                 }
                                 else
                                 {
-                                        return 3;
+                                        newTurn = 2;
                                 }
                         }
         }
-        return dir1;
-
+ 
         for(Trace t : Trace.getTraces())
         {
-			for(int i = trace1; i < trace2; i++)
-			{
-                if(t.getY() == i)
-                {
-                        for(int j = minimum; j < collide; j++)
+                        for(int i = trace1; i < trace2; i++)
                         {
-                                if(t.getX() == j)
-                                {
-                                        double turn = Math.random();
-                                        turn*=2;
-                                        turn = Math.floor(turn);
-                                        if(turn == 0)
-                                        {
-                                                return 1;
-                                        }
-                                        else
-                                        {
-                                                return 3;
-                                        }
-                                }
-                        }
-                        return dir1;
-                }
-                else
-				{
-                        return dir1;
-                }
-			}
-        }
-}       
-
-else
-{
-        int collide = y1+soup+32;
-        int minimum = y1+32;
-		int trace1 = x1-5;
-		int trace2 = x1+5;
-        for(int i = minimum; i < collide; i++)
-        {
-                if(i == 480)
-                        {
-                                double turn = Math.random();
-                                turn*=2;
-                                turn = Math.floor(turn);
-                                if(turn == 0)
-                                {
-                                        return 0;
-                                }
-                                else
-                                {
-                                        return 2;
-                                }
-                        }
-        }
-        return dir1;
-
-        for(Trace t : Trace.getTraces())
-        {
-			for(int i = trace1; i < trace2; i++)
-			{
                 if(t.getX() == i)
                 {
                         for(int j = minimum; j < collide; j++)
                         {
                                 if(t.getY() == j)
                                 {
-                                        double turn = Math.random();
-                                        turn*=2;
-                                        turn = Math.floor(turn);
                                         if(turn == 0)
                                         {
-                                                return 0;
+                                                newTurn = 0;
                                         }
                                         else
                                         {
-                                                return 2;
+                                                newTurn = 2;
                                         }
                                 }
                         }
-                        return dir1;
+                        //newTurn = dir1;
                 }
                 else
-				{
-                        return dir1;
+                                {
+                        //newTurn = dir1;
                 }
-			}
+                        }
         }
-}       
-return dir1;
+}      
+ 
+else if(dir1 == 2)
+{
+        int collide = x1-soup;
+        int minimum = x1-10;
+        int trace1 = y1-5;
+        int trace2 = y1+5;
+        for(int i = minimum; i > collide; i--)
+        {
+                if(i == 0)
+                {
+                        if(y1 > 240)
+                        {
+                                        newTurn = 1;
+                        }
+                        else
+                        {
+                                        newTurn = 3;
+                        }
+                }
+        }
+ 
+        for(Trace t : Trace.getTraces())
+        {
+                for(int i = trace1; i < trace2; i++)
+                {
+                        if(t.getY() == i)
+                        {
+                                        for(int j = minimum; j < collide; j++)
+                                        {
+                                                        if(t.getX() == j)
+                                                        {
+                                                                        if(turn == 0)
+                                                                        {
+                                                                                        newTurn = 1;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                                        newTurn = 3;
+                                                                        }
+                                                        }
+                                        }
+                                        //newTurn = dir1;
+                        }
+                        else
+                        {
+                                        //newTurn = dir1;
+                        }
+                }
+        }
+}      
+ 
+else if(dir1 == 3)
+{
+        int collide = y1+soup+32;
+        int minimum = y1+42;
+                int trace1 = x1-5;
+                int trace2 = x1+5;
+        for(int i = minimum; i < collide; i++)
+        {
+                if(i == 480)
+                        {
+                                if(x1 < 320)
+                                {
+                                        newTurn = 0;
+                                }
+                                else
+                                {
+                                        newTurn = 2;
+                                }
+                        }
+        }
+ 
+        for(Trace t : Trace.getTraces())
+        {
+                        for(int i = trace1; i < trace2; i++)
+                        {
+                if(t.getX() == i)
+                {
+                        for(int j = minimum; j < collide; j++)
+                        {
+                                if(t.getY() == j)
+                                {
+                                        if(turn == 0)
+                                        {
+                                                newTurn = 0;
+                                        }
+                                        else
+                                        {
+                                                newTurn = 2;
+                                        }
+                                }
+                        }
+                        //newTurn = dir1;
+                }
+                else
+                                {
+                        //newTurn = dir1;
+                }
+                        }
+        }
+}      
+//else
+//}
+        //newTurn = dir1;
+//}
+return newTurn;
 }
 }
