@@ -46,7 +46,7 @@ if(dir1 == 0)
                         {
                                 double turn = Math.random();
                                 turn*=2;
-                                Math.floor(turn);
+                                turn = Math.floor(turn);
                                 if(turn == 0)
                                 {
                                         return 1;
@@ -71,7 +71,7 @@ if(dir1 == 0)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
-                                        Math.floor(turn);
+                                        turn = Math.floor(turn);
                                         if(turn == 0)
                                         {
                                                 return 1;
@@ -104,7 +104,7 @@ else if(dir1 == 1)
                         {
                                 double turn = Math.random();
                                 turn*=2;
-                                Math.floor(turn);
+                                turn = Math.floor(turn);
                                 if(turn == 0)
                                 {
                                         return 0;
@@ -129,7 +129,7 @@ else if(dir1 == 1)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
-                                        Math.floor(turn);
+                                        turn = Math.floor(turn);
                                         if(turn == 0)
                                         {
                                                 return 0;
@@ -156,13 +156,13 @@ else if(dir1 == 2)
         int minimum = x1-10;
 		int trace1 = y1-5;
 		int trace2 = y1+5;
-        for(int i = minimum; i < collide; i++)
+        for(int i = minimum; i > collide; i--)
         {
                 if(i == 0)
                         {
                                 double turn = Math.random();
                                 turn*=2;
-                                Math.floor(turn);
+                                turn = Math.floor(turn);
                                 if(turn == 0)
                                 {
                                         return 1;
@@ -187,7 +187,7 @@ else if(dir1 == 2)
                                 {
                                         double turn = Math.random();
                                         turn*=2;
-                                        Math.floor(turn);
+                                        turn = Math.floor(turn);
                                         if(turn == 0)
                                         {
                                                 return 1;
@@ -220,7 +220,7 @@ else
                         {
                                 double turn = Math.random();
                                 turn*=2;
-                                Math.floor(turn);
+                                turn = Math.floor(turn);
                                 if(turn == 0)
                                 {
                                         return 0;
@@ -245,7 +245,7 @@ else
                                 {
                                         double turn = Math.random();
                                         turn*=2;
-                                        Math.floor(turn);
+                                        turn = Math.floor(turn);
                                         if(turn == 0)
                                         {
                                                 return 0;
