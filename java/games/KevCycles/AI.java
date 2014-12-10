@@ -60,7 +60,11 @@ if(dir1 == 0)
                                 }
                         }
         }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> origin/master
         for(Trace t : Trace.getTraces())
         {
                         for(int i = trace1; i < trace2; i++)
@@ -95,8 +99,13 @@ else if(dir1 == 1)
 {
         int collide = y1-soup;
         int minimum = y1-10;
+<<<<<<< HEAD
                 int trace1 = x1-5;
                 int trace2 = x1+5;
+=======
+		int trace1 = x1-5;
+		int trace2 = x1+5;
+>>>>>>> origin/master
         for(int i = minimum; i > collide; i--)
         {
                 if(i == 0)
@@ -111,7 +120,11 @@ else if(dir1 == 1)
                                 }
                         }
         }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> origin/master
         for(Trace t : Trace.getTraces())
         {
                         for(int i = trace1; i < trace2; i++)
@@ -162,7 +175,11 @@ else if(dir1 == 2)
                         }
                 }
         }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> origin/master
         for(Trace t : Trace.getTraces())
         {
                 for(int i = trace1; i < trace2; i++)
@@ -213,7 +230,11 @@ else if(dir1 == 3)
                                 }
                         }
         }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> origin/master
         for(Trace t : Trace.getTraces())
         {
                         for(int i = trace1; i < trace2; i++)
