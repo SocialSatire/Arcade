@@ -57,7 +57,6 @@ if(dir1 == 0)
                                 }
                         }
         }
-        return dir1;
 
         for(Trace t : Trace.getTraces())
         {
@@ -98,7 +97,7 @@ else if(dir1 == 1)
         int minimum = y1-10;
 		int trace1 = x1-5;
 		int trace2 = x1+5;
-        for(int i = minimum; i < collide; i++)
+        for(int i = minimum; i > collide; i--)
         {
                 if(i == 0)
                         {
@@ -115,7 +114,6 @@ else if(dir1 == 1)
                                 }
                         }
         }
-        return dir1;
 
         for(Trace t : Trace.getTraces())
         {
@@ -173,7 +171,6 @@ else if(dir1 == 2)
                                 }
                         }
         }
-        return dir1;
 
         for(Trace t : Trace.getTraces())
         {
@@ -231,7 +228,6 @@ else
                                 }
                         }
         }
-        return dir1;
 
         for(Trace t : Trace.getTraces())
         {
