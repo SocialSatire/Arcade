@@ -242,11 +242,13 @@ else if(dir1 == 3)
                 }
 			}
         }
-}       
-//else
-//}
-	//newTurn = dir1;
-//}
+} 
+/*      
+else
+{
+	newTurn = dir1;
+}
+*/
 return newTurn;
 }
-}
+}0
