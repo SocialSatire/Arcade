@@ -42,104 +42,105 @@ int newTurn = dir1;
 
 if(dir1 == 0)
 {
-        int collide = x1+soup+32;
-        int minimum = x1+42;
-		int trace1 = y1-5;
-		int trace2 = y1+5;
-        for(int i = minimum; i < collide; i++)
-        {
-                if(i == 640)
-                        {
-                                if(y1 > 240)
-                                {
-                                        newTurn = 1;
-                                }
-                                else
-                                {
-                                        newTurn = 3;
-                                }
-                        }
-        }
-
-        for(Trace t : Trace.getTraces())
-        {
-			for(int i = trace1; i < trace2; i++)
+	int collide = x1+soup+32;
+	int minimum = x1+42;
+	int trace1 = y1-5;
+	int trace2 = y1+5;
+	for(int i = minimum; i < collide; i++)
+	{
+		if(i == 640)
+		{
+			if(y1 > 240)
 			{
-                if(t.getY() == i)
-                {
-                        for(int j = minimum; j < collide; j++)
-                        {
-                                if(t.getX() == j)
-                                {
-                                        if(turn == 0)
-                                        {
-                                                newTurn = 1;
-                                        }
-                                        else
-                                        {
-                                                newTurn = 3;
-                                        }
-                                }
-                        }
-                        //newTurn = dir1;
-                }
-                else
-				{
-                        //newTurn = dir1;
-                }
+				newTurn = 1;
 			}
-        }
+			else
+			{
+				newTurn = 3;
+				//KevCycles.notification("Turning down");
+			}
+		}
+	}
+
+	for(Trace t : Trace.getTraces())
+	{
+		for(int i = trace1; i < trace2; i++)
+		{
+			if(t.getY() == i)
+			{
+				for(int j = minimum; j < collide; j++)
+				{
+					if(t.getX() == j)
+					{
+						if(turn == 0)
+						{
+							newTurn = 1;
+						}
+						else
+						{
+							newTurn = 3;
+						}
+					}
+				}
+				//newTurn = dir1;
+			}
+			else
+			{
+				//newTurn = dir1;
+			}
+		}
+	}
 }       
 
 else if(dir1 == 1)
 {
-        int collide = y1-soup;
-        int minimum = y1-10;
-		int trace1 = x1-5;
-		int trace2 = x1+5;
-        for(int i = minimum; i > collide; i--)
-        {
-                if(i == 0)
-                        {
-                                if(x1 < 320)
-                                {
-                                        newTurn = 0;
-                                }
-                                else
-                                {
-                                        newTurn = 2;
-                                }
-                        }
-        }
-
-        for(Trace t : Trace.getTraces())
-        {
-			for(int i = trace1; i < trace2; i++)
+	int collide = y1-soup;
+	int minimum = y1-10;
+	int trace1 = x1-5;
+	int trace2 = x1+5;
+	for(int i = minimum; i > collide; i--)
+	{
+		if(i == 0)
+		{
+			if(x1 < 320)
 			{
-                if(t.getX() == i)
-                {
-                        for(int j = minimum; j < collide; j++)
-                        {
-                                if(t.getY() == j)
-                                {
-                                        if(turn == 0)
-                                        {
-                                                newTurn = 0;
-                                        }
-                                        else
-                                        {
-                                                newTurn = 2;
-                                        }
-                                }
-                        }
-                        //newTurn = dir1;
-                }
-                else
-				{
-                        //newTurn = dir1;
-                }
+					newTurn = 0;
 			}
-        }
+			else
+			{
+					newTurn = 2;
+			}
+		}
+	}
+
+	for(Trace t : Trace.getTraces())
+	{
+		for(int i = trace1; i < trace2; i++)
+		{
+			if(t.getX() == i)
+			{
+				for(int j = minimum; j < collide; j++)
+				{
+					if(t.getY() == j)
+					{
+						if(turn == 0)
+						{
+								newTurn = 0;
+						}
+						else
+						{
+								newTurn = 2;
+						}
+					}
+				}
+				//newTurn = dir1;
+			}
+			else
+			{
+				//newTurn = dir1;
+			}
+		}
+	}
 }       
 
 else if(dir1 == 2)
@@ -148,6 +149,8 @@ else if(dir1 == 2)
 	int minimum = x1-10;
 	int trace1 = y1-5;
 	int trace2 = y1+5;
+	/*
+	Commenting this out so that I can test trace detection.
 	for(int i = minimum; i > collide; i--)
 	{
 		if(i == 0)
@@ -162,6 +165,7 @@ else if(dir1 == 2)
 			}
 		}
 	}
+	*/
 
 	for(Trace t : Trace.getTraces())
 	{
@@ -169,25 +173,25 @@ else if(dir1 == 2)
 		{
 			if(t.getY() == i)
 			{
-					for(int j = minimum; j < collide; j++)
+				for(int j = minimum; j < collide; j++)
+				{
+					if(t.getX() == j)
 					{
-							if(t.getX() == j)
-							{
-									if(turn == 0)
-									{
-											newTurn = 1;
-									}
-									else
-									{
-											newTurn = 3;
-									}
-							}
+						if(turn == 0)
+						{
+								newTurn = 1;
+						}
+						else
+						{
+								newTurn = 3;
+						}
 					}
-					//newTurn = dir1;
+				}
+				//newTurn = dir1;
 			}
 			else
 			{
-					//newTurn = dir1;
+				//newTurn = dir1;
 			}
 		}
 	}
@@ -195,53 +199,53 @@ else if(dir1 == 2)
 
 else if(dir1 == 3)
 {
-        int collide = y1+soup+32;
-        int minimum = y1+42;
-		int trace1 = x1-5;
-		int trace2 = x1+5;
-        for(int i = minimum; i < collide; i++)
-        {
-                if(i == 480)
-                        {
-                                if(x1 < 320)
-                                {
-                                        newTurn = 0;
-                                }
-                                else
-                                {
-                                        newTurn = 2;
-                                }
-                        }
-        }
-
-        for(Trace t : Trace.getTraces())
-        {
-			for(int i = trace1; i < trace2; i++)
+	int collide = y1+soup+32;
+	int minimum = y1+42;
+	int trace1 = x1-5;
+	int trace2 = x1+5;
+	for(int i = minimum; i < collide; i++)
+	{
+		if(i == 480)
+		{
+			if(x1 < 320)
 			{
-                if(t.getX() == i)
-                {
-                        for(int j = minimum; j < collide; j++)
-                        {
-                                if(t.getY() == j)
-                                {
-                                        if(turn == 0)
-                                        {
-                                                newTurn = 0;
-                                        }
-                                        else
-                                        {
-                                                newTurn = 2;
-                                        }
-                                }
-                        }
-                        //newTurn = dir1;
-                }
-                else
-				{
-                        //newTurn = dir1;
-                }
+					newTurn = 0;
 			}
-        }
+			else
+			{
+					newTurn = 2;
+			}
+		}
+	}
+
+	for(Trace t : Trace.getTraces())
+	{
+		for(int i = trace1; i < trace2; i++)
+		{
+			if(t.getX() == i)
+			{
+				for(int j = minimum; j < collide; j++)
+				{
+					if(t.getY() == j)
+					{
+						if(turn == 0)
+						{
+								newTurn = 0;
+						}
+						else
+						{
+								newTurn = 2;
+						}
+					}
+				}
+				//newTurn = dir1;
+			}
+			else
+			{
+				//newTurn = dir1;
+			}
+		}
+	}
 } 
 /*      
 else
@@ -251,4 +255,4 @@ else
 */
 return newTurn;
 }
-}0
+}
