@@ -57,7 +57,6 @@ if(dir1 == 0)
 			else
 			{
 				newTurn = 3;
-				//KevCycles.notification("Turning down");
 			}
 		}
 	}
@@ -82,11 +81,6 @@ if(dir1 == 0)
 						}
 					}
 				}
-				//newTurn = dir1;
-			}
-			else
-			{
-				//newTurn = dir1;
 			}
 		}
 	}
@@ -119,7 +113,7 @@ else if(dir1 == 1)
 		{
 			if(t.getX() == i)
 			{
-				for(int j = minimum; j < collide; j++)
+				for(int j = collide; j < minimum; j++)
 				{
 					if(t.getY() == j)
 					{
@@ -133,11 +127,6 @@ else if(dir1 == 1)
 						}
 					}
 				}
-				//newTurn = dir1;
-			}
-			else
-			{
-				//newTurn = dir1;
 			}
 		}
 	}
@@ -149,8 +138,6 @@ else if(dir1 == 2)
 	int minimum = x1-10;
 	int trace1 = y1-5;
 	int trace2 = y1+5;
-	/*
-	Commenting this out so that I can test trace detection.
 	for(int i = minimum; i > collide; i--)
 	{
 		if(i == 0)
@@ -165,15 +152,13 @@ else if(dir1 == 2)
 			}
 		}
 	}
-	*/
-
 	for(Trace t : Trace.getTraces())
 	{
 		for(int i = trace1; i < trace2; i++)
 		{
 			if(t.getY() == i)
 			{
-				for(int j = minimum; j < collide; j++)
+				for(int j = collide; j < minimum; j++)
 				{
 					if(t.getX() == j)
 					{
@@ -187,11 +172,6 @@ else if(dir1 == 2)
 						}
 					}
 				}
-				//newTurn = dir1;
-			}
-			else
-			{
-				//newTurn = dir1;
 			}
 		}
 	}
@@ -238,21 +218,14 @@ else if(dir1 == 3)
 						}
 					}
 				}
-				//newTurn = dir1;
-			}
-			else
-			{
-				//newTurn = dir1;
 			}
 		}
 	}
-} 
-/*      
+}      
 else
 {
 	newTurn = dir1;
 }
-*/
 return newTurn;
 }
 }
