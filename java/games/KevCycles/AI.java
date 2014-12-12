@@ -29,8 +29,8 @@ public class AI{
        
 double soupd = Math.random();
  
-soupd*=30;
-soupd+=20;
+soupd*=15;
+soupd+=11;
  
 int soup = (int) Math.floor(soupd);
 
@@ -40,12 +40,25 @@ Math.floor(turn);
 
 int newTurn = dir1;
 
+int xtrace1 = x1-4;
+int xtrace2 = x1+15;
+int ytrace1 = y1-4;
+int ytrace2 = y1+15;
+
+/*
+public void locateTraceX(currentLocationY)
+{
+	for(Trace t : Trace.getTraces())
+	{
+		Can't do more without more knowledge of turning radius.
+	}
+}
+*/
+
 if(dir1 == 0)
 {
 	int collide = x1+soup+32;
 	int minimum = x1+42;
-	int trace1 = y1-5;
-	int trace2 = y1+5;
 	for(int i = minimum; i < collide; i++)
 	{
 		if(i == 640)
@@ -60,10 +73,9 @@ if(dir1 == 0)
 			}
 		}
 	}
-
 	for(Trace t : Trace.getTraces())
 	{
-		for(int i = trace1; i < trace2; i++)
+		for(int i = ytrace1; i < ytrace2; i++)
 		{
 			if(t.getY() == i)
 			{
@@ -90,8 +102,6 @@ else if(dir1 == 1)
 {
 	int collide = y1-soup;
 	int minimum = y1-10;
-	int trace1 = x1-5;
-	int trace2 = x1+5;
 	for(int i = minimum; i > collide; i--)
 	{
 		if(i == 0)
@@ -106,10 +116,9 @@ else if(dir1 == 1)
 			}
 		}
 	}
-
 	for(Trace t : Trace.getTraces())
 	{
-		for(int i = trace1; i < trace2; i++)
+		for(int i = xtrace1; i < xtrace2; i++)
 		{
 			if(t.getX() == i)
 			{
@@ -136,8 +145,6 @@ else if(dir1 == 2)
 {
 	int collide = x1-soup;
 	int minimum = x1-10;
-	int trace1 = y1-5;
-	int trace2 = y1+5;
 	for(int i = minimum; i > collide; i--)
 	{
 		if(i == 0)
@@ -154,7 +161,7 @@ else if(dir1 == 2)
 	}
 	for(Trace t : Trace.getTraces())
 	{
-		for(int i = trace1; i < trace2; i++)
+		for(int i = ytrace1; i < ytrace2; i++)
 		{
 			if(t.getY() == i)
 			{
@@ -181,8 +188,6 @@ else if(dir1 == 3)
 {
 	int collide = y1+soup+32;
 	int minimum = y1+42;
-	int trace1 = x1-5;
-	int trace2 = x1+5;
 	for(int i = minimum; i < collide; i++)
 	{
 		if(i == 480)
@@ -197,10 +202,9 @@ else if(dir1 == 3)
 			}
 		}
 	}
-
 	for(Trace t : Trace.getTraces())
 	{
-		for(int i = trace1; i < trace2; i++)
+		for(int i = xtrace1; i < xtrace2; i++)
 		{
 			if(t.getX() == i)
 			{
@@ -221,7 +225,8 @@ else if(dir1 == 3)
 			}
 		}
 	}
-}      
+}
+
 else
 {
 	newTurn = dir1;
@@ -229,3 +234,4 @@ else
 return newTurn;
 }
 }
+
