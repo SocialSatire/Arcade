@@ -6,7 +6,56 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import java.util.ArrayList;
- 
+
+/*
+public void locateTrace()
+{
+	for(Trace t : Trace.getTraces())
+	{
+		if(dir1 == 0)
+		{
+			for(int kevVar1 = x1-20; kevVar1 < x1-1; kevVar1++)
+			{
+				if(t.getX() == kevVar)
+				{
+					if(t.getY() < y1)
+					{
+						int traceDisplacement = t.getY()-(y1-8);
+						if(traceDisplacement) < 0)
+						{
+							Math.abs(traceDisplacement);
+						}
+						if(traceDisplacement < currentSmallestAbove)
+						{
+							currentSmallestAbove = traceDisplacement;
+						}
+					}
+					else
+					{
+						int traceDisplacement = t.getY()-(y1-8);
+						if(traceDisplacement) < 0)
+						{
+							Math.abs(traceDisplacement);
+						}
+						if(traceDisplacement < currentSmallestBelow)
+						{
+							currentSmallestBelow = traceDisplacement;
+						}
+					}
+				}
+			}
+			if(currentSmallestBelow < currentSmallestAbove)
+			{
+				newTurn = 1;
+			}
+			else
+			{
+				newTurn = 3;
+			}
+		}
+	}
+*/
+
 public class AI{
  
         private int x1, y1, dir1, x2, y2, dir2; // x1, y1, and dir1 are for the ai; x2, y2, and dir2 are for the other player.
@@ -26,7 +75,7 @@ public class AI{
         }
         public int getChoice()
 {
-       
+
 double soupd = Math.random();
  
 soupd*=15;
@@ -45,15 +94,13 @@ int xtrace2 = x1+15;
 int ytrace1 = y1-4;
 int ytrace2 = y1+15;
 
-/*
-public void locateTraceX(currentLocationY)
-{
-	for(Trace t : Trace.getTraces())
-	{
-		Can't do more without more knowledge of turning radius.
-	}
-}
-*/
+int currentSmallestAbove = 641;
+int currentSmallestBelow = 641;
+
+int kevVar1 = 0;
+
+ArrayList<Trace1> specificTraces1 = new ArrayList<Trace1>();
+ArrayList<Trace2> specificTraces2 = new ArrayList<Trace2>();
 
 if(dir1 == 0)
 {
@@ -83,14 +130,7 @@ if(dir1 == 0)
 				{
 					if(t.getX() == j)
 					{
-						if(turn == 0)
-						{
-							newTurn = 1;
-						}
-						else
-						{
-							newTurn = 3;
-						}
+						locateTrace();
 					}
 				}
 			}
