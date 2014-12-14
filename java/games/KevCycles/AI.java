@@ -7,54 +7,6 @@ import org.newdawn.slick.Game;
 import org.newdawn.slick.Image;
 import java.util.ArrayList;
 
-/*
-public void locateTrace()
-{
-	for(Trace t : Trace.getTraces())
-	{
-		if(dir1 == 0)
-		{
-			for(int kevVar1 = x1-20; kevVar1 < x1-1; kevVar1++)
-			{
-				if(t.getX() == kevVar)
-				{
-					if(t.getY() < y1)
-					{
-						int traceDisplacement = t.getY()-(y1-8);
-						if(traceDisplacement) < 0)
-						{
-							Math.abs(traceDisplacement);
-						}
-						if(traceDisplacement < currentSmallestAbove)
-						{
-							currentSmallestAbove = traceDisplacement;
-						}
-					}
-					else
-					{
-						int traceDisplacement = t.getY()-(y1-8);
-						if(traceDisplacement) < 0)
-						{
-							Math.abs(traceDisplacement);
-						}
-						if(traceDisplacement < currentSmallestBelow)
-						{
-							currentSmallestBelow = traceDisplacement;
-						}
-					}
-				}
-			}
-			if(currentSmallestBelow < currentSmallestAbove)
-			{
-				newTurn = 1;
-			}
-			else
-			{
-				newTurn = 3;
-			}
-		}
-	}
-*/
 
 public class AI{
  
@@ -73,100 +25,132 @@ public class AI{
         public AI(int x1, int y1, int dir1, int x2, int y2, int dir2){
                 this.x1 = x1;this.y1 = y1;this.dir1 = dir1;this.x2 = x2;this.y2 = y2;this.dir2 = dir2;
         }
-        public int getChoice()
-{
-
-double soupd = Math.random();
- 
-soupd*=15;
-soupd+=11;
- 
-int soup = (int) Math.floor(soupd);
-
-double turn = Math.random();
-turn*=2;
-Math.floor(turn);
-
-int newTurn = dir1;
-
-int xtrace1 = x1-4;
-int xtrace2 = x1+15;
-int ytrace1 = y1-4;
-int ytrace2 = y1+15;
-
-int currentSmallestAbove = 641;
-int currentSmallestBelow = 641;
-
-int kevVar1 = 0;
-
-ArrayList<Trace1> specificTraces1 = new ArrayList<Trace1>();
-ArrayList<Trace2> specificTraces2 = new ArrayList<Trace2>();
-
-if(dir1 == 0)
-{
-	int collide = x1+soup+32;
-	int minimum = x1+42;
-	for(int i = minimum; i < collide; i++)
-	{
-		if(i == 640)
+		
+		public int locateTrace()
 		{
-			if(y1 > 240)
+			int currentSmallestAbove = 641;
+			int currentSmallestBelow = 641;
+			for(Trace t : Trace.getTraces())
 			{
-				newTurn = 1;
-			}
-			else
-			{
-				newTurn = 3;
-			}
-		}
-	}
-	for(Trace t : Trace.getTraces())
-	{
-		for(int i = ytrace1; i < ytrace2; i++)
-		{
-			if(t.getY() == i)
-			{
-				for(int j = minimum; j < collide; j++)
+				if(dir1 == 0)
 				{
-					if(t.getX() == j)
+					for(int kevVar1 = x1-20; kevVar1 < x1-1; kevVar1++)
 					{
-						locateTrace();
+						if(t.getX() == kevVar1)
+						{
+							if(t.getY() < y1)
+							{
+								int traceDisplacement = t.getY()-(y1-8);
+								if(traceDisplacement < 0)
+								{
+									Math.abs(traceDisplacement);
+								}
+								if(traceDisplacement < currentSmallestAbove)
+								{
+									currentSmallestAbove = traceDisplacement;
+								}
+							}
+							else
+							{
+								int traceDisplacement = t.getY()-(y1-8);
+								if(traceDisplacement < 0)
+								{
+									Math.abs(traceDisplacement);
+								}
+								if(traceDisplacement < currentSmallestBelow)
+								{
+									currentSmallestBelow = traceDisplacement;
+								}
+							}
+						}
+					}
+					if(currentSmallestBelow < currentSmallestAbove)
+					{
+						return 1;
+					}
+					else
+					{
+						return 3;
 					}
 				}
 			}
+			return dir1;
 		}
-	}
-}       
+		
+        public int getChoice()
+		{
 
-else if(dir1 == 1)
-{
-	int collide = y1-soup;
-	int minimum = y1-10;
-	for(int i = minimum; i > collide; i--)
-	{
-		if(i == 0)
-		{
-			if(x1 < 320)
+			double soupd = Math.random();
+			 
+			soupd*=15;
+			soupd+=11;
+			 
+			int soup = (int) Math.floor(soupd);
+
+			double turn = Math.random();
+			turn*=2;
+			Math.floor(turn);
+
+			int newTurn = dir1;
+
+			int xtrace1 = x1-4;
+			int xtrace2 = x1+15;
+			int ytrace1 = y1-4;
+			int ytrace2 = y1+15;
+
+			int currentSmallestAbove = 641;
+			int currentSmallestBelow = 641;
+
+			int kevVar1 = 0;
+
+			ArrayList<Trace> specificTraces1 = new ArrayList<Trace>();
+			ArrayList<Trace> specificTraces2 = new ArrayList<Trace>();
+
+			if(dir1 == 0)
 			{
-					newTurn = 0;
-			}
-			else
-			{
-					newTurn = 2;
-			}
-		}
-	}
-	for(Trace t : Trace.getTraces())
-	{
-		for(int i = xtrace1; i < xtrace2; i++)
-		{
-			if(t.getX() == i)
-			{
-				for(int j = collide; j < minimum; j++)
+				int collide = x1+soup+32;
+				int minimum = x1+42;
+				for(int i = minimum; i < collide; i++)
 				{
-					if(t.getY() == j)
+					if(i == 640)
 					{
-						if(turn == 0)
+						if(y1 > 240)
+						{
+							newTurn = 1;
+						}
+						else
+						{
+							newTurn = 3;
+						}
+					}
+				}
+				for(Trace t : Trace.getTraces())
+				{
+					for(int i = ytrace1; i < ytrace2; i++)
+					{
+						if(t.getY() == i)
+						{
+							for(int j = minimum; j < collide; j++)
+							{
+								if(t.getX() == j)
+								{
+									newTurn = locateTrace();
+								}
+							}
+						}
+					}
+				}
+			}       
+
+			else if(dir1 == 1)
+			{
+				int collide = y1-soup;
+				int minimum = y1-10;
+				for(int i = minimum; i > collide; i--)
+				{
+					if(i == 0)
+					{
+						if(x1 < 320)
 						{
 								newTurn = 0;
 						}
@@ -176,40 +160,40 @@ else if(dir1 == 1)
 						}
 					}
 				}
-			}
-		}
-	}
-}       
-
-else if(dir1 == 2)
-{
-	int collide = x1-soup;
-	int minimum = x1-10;
-	for(int i = minimum; i > collide; i--)
-	{
-		if(i == 0)
-		{
-			if(y1 > 240)
-			{
-					newTurn = 1;
-			}
-			else
-			{
-					newTurn = 3;
-			}
-		}
-	}
-	for(Trace t : Trace.getTraces())
-	{
-		for(int i = ytrace1; i < ytrace2; i++)
-		{
-			if(t.getY() == i)
-			{
-				for(int j = collide; j < minimum; j++)
+				for(Trace t : Trace.getTraces())
 				{
-					if(t.getX() == j)
+					for(int i = xtrace1; i < xtrace2; i++)
 					{
-						if(turn == 0)
+						if(t.getX() == i)
+						{
+							for(int j = collide; j < minimum; j++)
+							{
+								if(t.getY() == j)
+								{
+									if(turn == 0)
+									{
+											newTurn = 0;
+									}
+									else
+									{
+											newTurn = 2;
+									}
+								}
+							}
+						}
+					}
+				}
+			}       
+
+			else if(dir1 == 2)
+			{
+				int collide = x1-soup;
+				int minimum = x1-10;
+				for(int i = minimum; i > collide; i--)
+				{
+					if(i == 0)
+					{
+						if(y1 > 240)
 						{
 								newTurn = 1;
 						}
@@ -219,40 +203,40 @@ else if(dir1 == 2)
 						}
 					}
 				}
-			}
-		}
-	}
-}       
-
-else if(dir1 == 3)
-{
-	int collide = y1+soup+32;
-	int minimum = y1+42;
-	for(int i = minimum; i < collide; i++)
-	{
-		if(i == 480)
-		{
-			if(x1 < 320)
-			{
-					newTurn = 0;
-			}
-			else
-			{
-					newTurn = 2;
-			}
-		}
-	}
-	for(Trace t : Trace.getTraces())
-	{
-		for(int i = xtrace1; i < xtrace2; i++)
-		{
-			if(t.getX() == i)
-			{
-				for(int j = minimum; j < collide; j++)
+				for(Trace t : Trace.getTraces())
 				{
-					if(t.getY() == j)
+					for(int i = ytrace1; i < ytrace2; i++)
 					{
-						if(turn == 0)
+						if(t.getY() == i)
+						{
+							for(int j = collide; j < minimum; j++)
+							{
+								if(t.getX() == j)
+								{
+									if(turn == 0)
+									{
+											newTurn = 1;
+									}
+									else
+									{
+											newTurn = 3;
+									}
+								}
+							}
+						}
+					}
+				}
+			}       
+
+			else if(dir1 == 3)
+			{
+				int collide = y1+soup+32;
+				int minimum = y1+42;
+				for(int i = minimum; i < collide; i++)
+				{
+					if(i == 480)
+					{
+						if(x1 < 320)
 						{
 								newTurn = 0;
 						}
@@ -262,16 +246,36 @@ else if(dir1 == 3)
 						}
 					}
 				}
+				for(Trace t : Trace.getTraces())
+				{
+					for(int i = xtrace1; i < xtrace2; i++)
+					{
+						if(t.getX() == i)
+						{
+							for(int j = minimum; j < collide; j++)
+							{
+								if(t.getY() == j)
+								{
+									if(turn == 0)
+									{
+											newTurn = 0;
+									}
+									else
+									{
+											newTurn = 2;
+									}
+								}
+							}
+						}
+					}
+				}
 			}
-		}
-	}
-}
 
-else
-{
-	newTurn = dir1;
-}
-return newTurn;
-}
+			else
+			{
+				newTurn = dir1;
+			}
+			return newTurn;
+		}
 }
 
