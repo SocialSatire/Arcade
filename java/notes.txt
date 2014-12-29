@@ -1,0 +1,25 @@
+Ok, so:
+
+Kevcycles is finished. Jumping and boosting have been added, the AI could certainly be smarter but it technically works, and the 99% is finally 100&.
+THIS MEANS THE CODE IS FINE.
+I'll go back in and change it when we figure out the actual arcade controls but OTHER THAN THAT THERE SHOULD BE NO REASON TO CHANGE ANY OF THE KEVCYCLES CODE THAT WORKS FINE, ESPECIALLY FOR SOMETHING LIKE FORMATTING.
+(The only thing that doesn't work is the custom bike selection, which I'll fix when we decide how we want to do that)
+(and yeah the color selection is in the top corner I tried to center it and it caused me Angst so I might fix that later too)
+(honestly it is still 100% complete though these are just extra little things)
+
+I also uploaded Jacques' arcade menu code (and Slick0170), combining it with QuitGame and adding a rather nifty title box image thing.
+"compile.bat" will now compile whichever game you choose, while "openMenu.bat" compiles and runs the menu.
+you need a 200px x 100px image named "title.png" in a "sprites" folder in your game folder for a new game now (there's a generic one in the ArcadeMenu folder if you don't feel like making one immediately)
+
+The uniform size for all the games is now 1280x1024, the size of the monitor we are using. 
+Fullscreen may come later but since that was causing issues we'll go with what we have here for now.
+
+THINGS WE STILL HAVE TO DO:
+
+- Kevin: Finish the AI code if we decide it needs to be smarter (All the framework is correct now, I tested it)
+- Jacques: Finish Sirtet
+- Mike: Infinite Runner Platformer (I'm taking a break after this though)
+- Robert: Get us a box
+- Julius: ...do SOMETHING. ANYTHING. MAKE A GAME.
+
+Happy New Year.
