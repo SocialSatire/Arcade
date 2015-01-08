@@ -18,12 +18,14 @@ public class ArcadeMenu extends BasicGame {
 	BasicGame game[] = {
 		new KevCycles(),
 		new Sirtet(),
-		new Slick0170()
+		new Slick0170(),
+		new MarkwardGame()
 	};
 	String gameName[] = {
 		"KevCycles",
 		"Sirtet",
-		"Slick0170"
+		"Slick0170",
+		"Mr. Markward's Game"
 	};
 
 	public ArcadeMenu() {
