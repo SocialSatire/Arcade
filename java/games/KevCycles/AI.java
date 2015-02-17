@@ -32,8 +32,8 @@ public class AI{
 		   
 		public int locateTrace()
 		{
-			int currentSmallestAbove = 641;
-			int currentSmallestBelow = 641;
+			int currentSmallestAbove = 1281;
+			int currentSmallestBelow = 1281;
 			int newDir = dir1;
 			for(Trace t : Trace.getTraces())
 			{
@@ -264,9 +264,9 @@ public class AI{
 				int minimum = x1+32;
 				for(int i = minimum; i < collide; i++)
 				{
-					if(i == 640)
+					if(i == 1280)
 					{
-						if(y1 > 240)
+						if(y1 > 640)
 						{
 							newTurn = 1;
 						}
@@ -302,7 +302,7 @@ public class AI{
 				{
 					if(i == 0)
 					{
-						if(x1 < 320)
+						if(x1 < 512)
 						{
 								newTurn = 0;
 						}
@@ -338,7 +338,7 @@ public class AI{
 				{
 					if(i == 0)
 					{
-						if(y1 > 240)
+						if(y1 > 640)
 						{
 								newTurn = 1;
 						}
@@ -373,9 +373,9 @@ public class AI{
 				//Wall Detection
 				for(int i = minimum; i < collide; i++)
 				{
-					if(i == 480)
+					if(i == 1024)
 					{
-						if(x1 < 320)
+						if(x1 < 512)
 						{
 								newTurn = 0;
 						}
