@@ -12,7 +12,7 @@ public class Slick0170 extends BasicGame {
 
 	int bgWidth, bgHeight;
 	int smX = 100, smY = 100, smWidth, smHeight;
-	int xStep = 3, yStep = 3;
+	int xStep = 300, yStep = 300;
 
 	int targetFPS = 60;
 
