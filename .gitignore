@@ -1,2 +1,4 @@
 java/lwjglbin/lwjgl64.dll
 java/lwjglbin/OpenAL64.dll
+java/lwjglbin/jinput-dx8_64.dll
+java/lwjglbin/jinput-raw_64.dll
